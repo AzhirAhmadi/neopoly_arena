@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   gem 'factory_bot', '~> 6.4'
   gem 'rspec-rails', '~> 6.1.0'
+  gem 'shoulda-matchers'
 
   gem 'rubocop', '~> 1.50.1'
   gem 'rubocop-performance', '~> 1.15'
