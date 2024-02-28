@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -26,8 +28,13 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # gem 'rack-cors'
 
 group :development, :test do
+  gem 'factory_bot', '~> 6.4'
   gem 'rspec-rails', '~> 6.1.0'
-  gem "factory_bot", "~> 6.4"
+
+  gem 'rubocop', '~> 1.50.1'
+  gem 'rubocop-performance', '~> 1.15'
+  gem 'rubocop-rails', '~> 2.16', '>= 2.16.1'
+  gem 'rubocop-rspec', '~> 2.13', '>= 2.13.2'
 end
 
 group :development do
@@ -37,4 +44,4 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i(mingw mswin x64_mingw jruby)
