@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class PlayersController < ApplicationController
+  skip_before_action :authenticate_player!, only: :create
+
   def create
     new_player = Player.new(player_params)
 

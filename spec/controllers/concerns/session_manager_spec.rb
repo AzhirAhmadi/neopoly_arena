@@ -19,7 +19,8 @@ RSpec.describe TestController, type: :controller do
   let(:expired_token) { create(:player, :expired_session).session }
 
   before do
-    routes.draw do
+    @routes = ActionDispatch::Routing::RouteSet.new
+    @routes.draw do
       get 'protected_action' => 'test#protected_action'
       get 'unprotected_action' => 'test#unprotected_action'
     end

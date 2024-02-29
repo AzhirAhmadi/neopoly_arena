@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 class PlayerSerializer < ApplicationSerializer
-  attributes :id, :nickname, :password
+  attributes :id, :nickname, :elo
 end
