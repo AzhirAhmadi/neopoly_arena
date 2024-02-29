@@ -18,6 +18,7 @@ RSpec.describe TestController, type: :controller do
   let(:authorized_player) { create(:player, :with_session) }
   let(:expired_token) { create(:player, :expired_session).session }
 
+  # rubocop:disable RSpec/InstanceVariable
   before do
     @routes = ActionDispatch::Routing::RouteSet.new
     @routes.draw do
@@ -25,6 +26,7 @@ RSpec.describe TestController, type: :controller do
       get 'unprotected_action' => 'test#unprotected_action'
     end
   end
+  # rubocop:enable RSpec/InstanceVariable
 
   describe 'SessionManager.include' do
     before { request.headers['Authorization'] = token }
