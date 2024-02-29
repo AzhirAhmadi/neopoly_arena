@@ -152,3 +152,10 @@ Style/PercentLiteralDelimiters:
 Rails/SaveBang:
   Enabled: true
   
+RSpec/FilePath:
+  Exclude:
+    - spec/controllers/concerns/*
+
+RSpec/SpecFilePathFormat:
+  Exclude:
+    - spec/controllers/concerns/*

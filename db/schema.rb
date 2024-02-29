@@ -12,13 +12,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_240_228_193_209) do
+ActiveRecord::Schema.define(version: 20_240_228_215_118) do
   create_table 'players', force: :cascade do |t|
     t.string 'nickname', null: false
     t.string 'password'
     t.integer 'elo', default: 1500
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
+    t.string 'session'
+    t.datetime 'session_expires_at'
     t.index ['nickname'], name: 'index_players_on_nickname', unique: true
+    t.index ['session'], name: 'index_players_on_session', unique: true
   end
 end

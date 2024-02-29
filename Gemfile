@@ -30,7 +30,9 @@ gem 'active_model_serializers'
 # gem 'rack-cors'
 
 group :development, :test do
-  gem 'factory_bot', '~> 6.4'
+  gem 'pry'
+
+  gem 'factory_bot_rails', '~> 6.4'
   gem 'rspec-rails', '~> 6.1.0'
   gem 'shoulda-matchers'
 
