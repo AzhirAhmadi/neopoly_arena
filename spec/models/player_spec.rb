@@ -38,6 +38,12 @@ RSpec.describe Player, type: :model do
       it 'returns a session that expires in 1 day' do
         expect(player.session_expires_at).to be_within(1.second).of(1.day.from_now)
       end
+
+      context 'when player is already singed_in' do
+        it 'returns a new session' do
+          expect(described_class.sing_in(nickname, password)).not_to eq(player.session)
+        end
+      end
     end
 
     context 'when the nickname and password are incorrect' do
