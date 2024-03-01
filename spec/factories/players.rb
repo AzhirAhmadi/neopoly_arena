@@ -14,5 +14,10 @@ FactoryBot.define do
       session { 'expired token' }
       session_expires_at { 1.day.ago }
     end
+
+    trait :with_random_elo do
+      # TODO: change to a more realistic upper limit
+      elo { rand(500..2000) }
+    end
   end
 end
