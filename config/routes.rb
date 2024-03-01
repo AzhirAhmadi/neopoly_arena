@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :players, only: :create
-  resources :sessions, only: :create
+
+  post 'player', to: 'players#create'
+  post 'session', to: 'sessions#create'
+  get 'rankings', to: 'players#rankings'
 end

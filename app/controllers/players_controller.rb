@@ -13,6 +13,18 @@ class PlayersController < ApplicationController
     end
   end
 
+  def rankings
+    Rankings.call(**{ limit: params[:limit]&.to_i, offset: params[:offset]&.to_i }.compact) do |result|
+      result.success do |value|
+        render json: value, status: :ok
+      end
+
+      result.failure do |error|
+        render json: error, status: :unprocessable_entity
+      end
+    end
+  end
+
   private
 
   def player_params

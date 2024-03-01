@@ -85,4 +85,61 @@ RSpec.describe PlayersController, type: :controller do
       end
     end
   end
+
+  describe 'GET #rankings' do
+    subject { get :rankings, params: attributes }
+
+    let!(:players) do
+      create_list(:player, 10, :with_random_elo)
+        .map { |player| { id: player.id, elo: player.elo } }
+        .sort_by { |player| player[:elo] }.reverse
+    end
+
+    before do |example|
+      allow(Rankings).to receive(:call).and_call_original
+
+      signed_in_player = create(:player, :with_session)
+      request.headers['Authorization'] = signed_in_player.session
+
+      subject unless example.metadata[:skip_subject_call]
+    end
+
+    context 'when no params are given' do
+      let(:attributes) { {} }
+
+      it 'returns 200' do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'calls the Rankings service' do
+        expect(Rankings).to have_received(:call).with(no_args)
+      end
+    end
+
+    context 'when the limit is 3' do
+      let(:attributes) { { limit: 3 } }
+
+      context 'when the offset not given' do
+        it 'returns 200' do
+          expect(response).to have_http_status(:ok)
+        end
+
+        it 'calls the Rankings service' do
+          expect(Rankings).to have_received(:call).with(limit: 3)
+        end
+      end
+
+      context 'when the offset is given' do
+        let(:attributes) { super().merge(offset: 3) }
+
+        it 'returns 200' do
+          expect(response).to have_http_status(:ok)
+        end
+
+        it 'calls the Rankings service' do
+          expect(Rankings).to have_received(:call).with(limit: 3, offset: 3)
+        end
+      end
+    end
+  end
 end

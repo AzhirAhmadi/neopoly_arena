@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Ranking < ApplicationService
+class Rankings < ApplicationService
   option :limit, type: Types.Instance(Integer), default: proc { 100 }
   option :offset, type: Types.Instance(Integer), default: proc { 0 }
 

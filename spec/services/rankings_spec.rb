@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Ranking do
+RSpec.describe Rankings do
   describe '.call' do
     subject { described_class.call(**attributes) }
 
@@ -31,7 +31,7 @@ RSpec.describe Ranking do
         let(:attributes) { { limit: 3 } }
 
         context 'when the offset is 0' do
-          before { attributes.merge!(offset: 0) }
+          let(:attributes) { super().merge(offset: 0) }
 
           it 'returns a success' do
             expect(subject).to be_success
@@ -43,7 +43,7 @@ RSpec.describe Ranking do
         end
 
         context 'when the offset is 3' do
-          before { attributes.merge!(offset: 3) }
+          let(:attributes) { super().merge(offset: 3) }
 
           it 'returns a success' do
             expect(subject).to be_success
@@ -73,7 +73,7 @@ RSpec.describe Ranking do
         let(:attributes) { { limit: 3 } }
 
         context 'when the offset is 0' do
-          before { attributes.merge!(offset: 0) }
+          let(:attributes) { super().merge(offset: 0) }
 
           it 'returns the top 3 players' do
             expected_value = [
@@ -87,7 +87,7 @@ RSpec.describe Ranking do
         end
 
         context 'when the offset is 3' do
-          before { attributes.merge!(offset: 3) }
+          let(:attributes) { super().merge(offset: 3) }
 
           it 'returns the second top 3 players' do
             expected_value = [
