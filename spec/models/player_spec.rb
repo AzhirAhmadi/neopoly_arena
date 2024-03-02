@@ -97,8 +97,7 @@ RSpec.describe Player, type: :model do
 
     describe '.lost_games' do
       it 'returns lost games' do
-        expect(player.lost_games.pluck(:id, :owner_id, :opponent_id,
-:winner_id)).to match_array(lost_games.pluck(:id, :owner_id, :opponent_id, :winner_id))
+        expect(player.lost_games).to match_array(lost_games)
       end
     end
 
@@ -111,62 +110,6 @@ RSpec.describe Player, type: :model do
     describe '.drawn_games' do
       it 'returns drawn games' do
         expect(player.drawn_games).to match_array(drawn_games)
-      end
-    end
-  end
-
-  describe '#sing_in' do
-    subject(:sing_in) { described_class.sing_in(nickname, password) }
-
-    let(:player) { create(:player) }
-    let(:nickname) { player.nickname }
-    let(:password) { player.password }
-
-    context 'when the nickname and password are correct' do
-      before do |example|
-        sing_in unless example.metadata[:skip_sign_in]
-
-        player.reload
-      end
-
-      it 'returns a session', :skip_sign_in do
-        expect(sing_in).to eq(player.reload.session)
-      end
-
-      it 'updates the session' do
-        expect(player.session).to be_present
-      end
-
-      it 'updates session_expires_at' do
-        expect(player.session_expires_at).to be_present
-      end
-
-      it 'returns a session that expires in 1 day' do
-        expect(player.session_expires_at).to be_within(1.second).of(1.day.from_now)
-      end
-
-      context 'when player is already singed_in' do
-        it 'returns a new session' do
-          expect(described_class.sing_in(nickname, password)).not_to eq(player.session)
-        end
-      end
-    end
-
-    context 'when the nickname and password are incorrect' do
-      context 'when the nickname is incorrect' do
-        let(:nickname) { 'Incorrect' }
-
-        it 'raises an error' do
-          expect { sing_in }.to raise_error('Invalid nickname or password')
-        end
-      end
-
-      context 'when the password is incorrect' do
-        let(:password) { 'Incorrect' }
-
-        it 'raises an error' do
-          expect { sing_in }.to raise_error('Invalid nickname or password')
-        end
       end
     end
   end

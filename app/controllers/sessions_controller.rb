@@ -4,11 +4,15 @@ class SessionsController < ApplicationController
   skip_before_action :authenticate_player!
 
   def create
-    session = Player.sing_in(login_params[:nickname], login_params[:password])
+    SingIn.call(**login_params.to_h) do |result|
+      result.success do |session|
+        render json: { access_token: session }, status: :ok
+      end
 
-    render json: { access_token: session }, status: :ok
-  rescue StandardError => exception
-    render json: { error: exception.message }, status: :unauthorized
+      result.failure do |error|
+        render json: { error: error }, status: :unauthorized
+      end
+    end
   end
 
   private
