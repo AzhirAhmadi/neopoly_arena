@@ -8,7 +8,7 @@ ruby '3.0.4'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.7', '>= 6.1.7.6'
 
-gem "mysql2"
+gem 'mysql2'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
