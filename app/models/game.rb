@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Game < ApplicationRecord
+  DEFAULT_BOARD = ('#' * 8 * 8)
+
   belongs_to :owner, class_name: 'Player'
   belongs_to :opponent, class_name: 'Player', optional: true
   belongs_to :winner, class_name: 'Player', optional: true

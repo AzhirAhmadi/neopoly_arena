@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :game do
     owner { association :player }
     turn { 'owner' }
-    board { '_' * 8 * 8 }
+    board { Game::DEFAULT_BOARD }
 
     trait :pending do
       status { :pending }
