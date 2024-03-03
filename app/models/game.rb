@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
 class Game < ApplicationRecord
-  DEFAULT_BOARD = ('#' * 8 * 8)
+  OWNER_MARK = 'X'
+  OPPONENT_MARK = 'O'
+
+  BOARD_MARK = '#'
+  BOARD_SIZE = 8
+  DEFAULT_BOARD = (BOARD_MARK * BOARD_SIZE * BOARD_SIZE)
 
   belongs_to :owner, class_name: 'Player'
   belongs_to :opponent, class_name: 'Player', optional: true
