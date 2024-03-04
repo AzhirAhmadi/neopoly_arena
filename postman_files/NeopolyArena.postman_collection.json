@@ -327,6 +327,50 @@
 			"response": []
 		},
 		{
+			"name": "/games/invite",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{access_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"opponent_id\": \"2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/games/invite",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"games",
+						"invite"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "/ranking?limit=3&offset=2",
 			"event": [
 				{
