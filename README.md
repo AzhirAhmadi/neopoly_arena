@@ -5,20 +5,15 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version: `ruby-3.2.2`
+* System dependencies: `MySql`
 
-* System dependencies
+* Database creation:
+  - Set your data base credentials
 
-* Configuration
+* Database initialization: `rails db:create db:migrate`
 
-* Database creation
+* How to run the test suite: `rspec spec`
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+You can use postman to import API collection ('/postman_files') and use it to call server and play the game.
