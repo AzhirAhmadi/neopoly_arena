@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Games::Manager do
+RSpec.describe Games::DropCoin do
   subject { described_class.call(**attributes) }
 
   let(:owner) { create(:player, elo: 1000) }
@@ -142,7 +142,7 @@ RSpec.describe Games::Manager do
         let(:attributes) { {} }
 
         it 'raises a KeyError' do
-          expect { subject }.to raise_error(KeyError, /Games::Manager: option 'game'/)
+          expect { subject }.to raise_error(KeyError, /Games::DropCoin: option 'game'/)
         end
       end
 
@@ -150,7 +150,7 @@ RSpec.describe Games::Manager do
         let(:attributes) { super().except(:game) }
 
         it 'raises a KeyError' do
-          expect { subject }.to raise_error(KeyError, /Games::Manager: option 'game'/)
+          expect { subject }.to raise_error(KeyError, /Games::DropCoin: option 'game'/)
         end
       end
 
@@ -158,7 +158,7 @@ RSpec.describe Games::Manager do
         let(:attributes) { super().except(:player) }
 
         it 'raises a KeyError' do
-          expect { subject }.to raise_error(KeyError, /Games::Manager: option 'player'/)
+          expect { subject }.to raise_error(KeyError, /Games::DropCoin: option 'player'/)
         end
       end
 
@@ -166,7 +166,7 @@ RSpec.describe Games::Manager do
         let(:attributes) { super().except(:move) }
 
         it 'raises a KeyError' do
-          expect { subject }.to raise_error(KeyError, /Games::Manager: option 'move'/)
+          expect { subject }.to raise_error(KeyError, /Games::DropCoin: option 'move'/)
         end
       end
 

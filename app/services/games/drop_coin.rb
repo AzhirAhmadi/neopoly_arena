@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Games
-  class Manager < ApplicationService
+  class DropCoin < ApplicationService
     option :game, Types.Instance(Game)
     option :player, Types.Instance(Player)
     option :move, Types::String
