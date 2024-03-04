@@ -116,6 +116,20 @@ RSpec.describe UpdateElo do
           expect(subject.failure).to eq('Invalid result')
         end
       end
+
+      context 'when update! raises an error' do
+        before do
+          allow(owner).to receive(:update!).and_raise('update! failed')
+        end
+
+        it 'returns a failure' do
+          expect(subject).to be_failure
+        end
+
+        it 'returns a message' do
+          expect(subject.failure).to eq('update! failed')
+        end
+      end
     end
   end
 end

@@ -21,7 +21,7 @@ class UpdateElo < ApplicationService
       opponent.update!(elo: opponent_elo)
 
       Success()
-    rescue ActiveRecord::RecordInvalid => exception
+    rescue StandardError => exception
       Failure(exception.message)
     end
   end
