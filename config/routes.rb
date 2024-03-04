@@ -10,4 +10,6 @@ Rails.application.routes.draw do
     put '/drop_coin', to: 'games#drop_coin'
     put '/join', to: 'games#join'
   end
+  
+  post '/invite', to: 'games#invite'
 end

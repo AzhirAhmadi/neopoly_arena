@@ -29,6 +29,20 @@ class GamesController < ApplicationController
     end
   end
 
+  def invite
+    opponent = Player.find_by(id: params[:opponent_id])
+
+    Games::Invite.call(owner: current_player, opponent: opponent) do |result|
+      result.success do |value|
+        render json: value, status: :created
+      end
+
+      result.failure do |error|
+        render json: error, status: :unprocessable_entity
+      end
+    end
+  end
+
   def join
     Games::Join.call(game: game, opponent: current_player) do |result|
       result.success do |value|
