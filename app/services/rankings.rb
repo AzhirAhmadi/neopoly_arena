@@ -32,6 +32,6 @@ class Rankings < ApplicationService
   end
 
   def plyers
-    Player.limit(limit).offset(offset).order(elo: :desc)
+    Player.limit(limit).offset(offset).order(elo: :desc).order(created_at: :asc)
   end
 end
