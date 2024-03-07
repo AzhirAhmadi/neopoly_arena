@@ -16,7 +16,7 @@ class Rankings < ApplicationService
   def items
     result = []
 
-    plyers.each_with_index do |player, index|
+    players.each_with_index do |player, index|
       result << {
         index: index,
         rank: index + 1 + offset,
@@ -31,7 +31,7 @@ class Rankings < ApplicationService
     result
   end
 
-  def plyers
+  def players
     Player.limit(limit).offset(offset).order(elo: :desc).order(created_at: :asc)
   end
 end

@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   skip_before_action :authenticate_player!
 
   def create
-    SingIn.call(**login_params.to_h) do |result|
+    SignIn.call(**login_params.to_h) do |result|
       result.success do |session|
         render json: { access_token: session }, status: :ok
       end

@@ -37,7 +37,7 @@ RSpec.describe SessionsController, type: :controller do
         end
 
         it 'returns the error message' do
-          expect(json_body[:error]).to eq("SingIn: option 'nickname' is required")
+          expect(json_body[:error]).to eq("SignIn: option 'nickname' is required")
         end
       end
 
@@ -49,7 +49,7 @@ RSpec.describe SessionsController, type: :controller do
         end
 
         it 'returns the error message' do
-          expect(json_body[:error]).to eq("SingIn: option 'password' is required")
+          expect(json_body[:error]).to eq("SignIn: option 'password' is required")
         end
       end
 

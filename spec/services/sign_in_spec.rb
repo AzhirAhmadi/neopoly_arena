@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe SingIn do
+RSpec.describe SignIn do
   describe '#call' do
-    subject(:sing_in) { described_class.call(**attributes) }
+    subject(:sign_in) { described_class.call(**attributes) }
 
     let(:player) { create(:player) }
     let(:attributes) { { nickname: nickname, password: password } }
@@ -13,17 +13,17 @@ RSpec.describe SingIn do
 
     context 'when the nickname and password are correct' do
       before do |example|
-        sing_in unless example.metadata[:skip_sign_in]
+        sign_in unless example.metadata[:skip_sign_in]
 
         player.reload
       end
 
       it 'returns a success' do
-        expect(sing_in).to be_success
+        expect(sign_in).to be_success
       end
 
       it 'returns a session', :skip_sign_in do
-        expect(sing_in.value!).to eq(player.reload.session)
+        expect(sign_in.value!).to eq(player.reload.session)
       end
 
       it 'updates the session' do
@@ -50,11 +50,11 @@ RSpec.describe SingIn do
         let(:nickname) { 'Incorrect' }
 
         it 'returns a failure' do
-          expect(sing_in).to be_failure
+          expect(sign_in).to be_failure
         end
 
         it 'has an error message' do
-          expect(sing_in.failure).to eq('Invalid nickname or password')
+          expect(sign_in.failure).to eq('Invalid nickname or password')
         end
       end
 
@@ -62,11 +62,11 @@ RSpec.describe SingIn do
         let(:password) { 'Incorrect' }
 
         it 'returns a failure' do
-          expect(sing_in).to be_failure
+          expect(sign_in).to be_failure
         end
 
         it 'has an error message' do
-          expect(sing_in.failure).to eq('Invalid nickname or password')
+          expect(sign_in.failure).to eq('Invalid nickname or password')
         end
       end
     end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SingIn < ApplicationService
+class SignIn < ApplicationService
   option :nickname, Types::String
   option :password, Types::String
 
