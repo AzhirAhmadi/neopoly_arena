@@ -7,12 +7,14 @@ class GameSerializer < ApplicationSerializer
   belongs_to :opponent, serializer: PlayerSerializer
   belongs_to :winner, serializer: PlayerSerializer
 
+  # This method is used to display the board in a more readable way
   def pretty_board
-    object.board.scan(/.{#{Game::BOARD_SIZE}}/o).join("\n")
+    board.join("\n")
   end
 
+  # This method is used to display the board in a more readable way
   def id_board
-    object.board.scan(/.{#{Game::BOARD_SIZE}}/o).map(&:chars).map do |row|
+    board.map(&:chars).map do |row|
       row.map do |cell|
         case cell
         when Game::BOARD_MARK
@@ -24,5 +26,9 @@ class GameSerializer < ApplicationSerializer
         end
       end
     end
+  end
+
+  def board
+    object.board.scan(/.{#{Game::BOARD_SIZE}}/o)
   end
 end
